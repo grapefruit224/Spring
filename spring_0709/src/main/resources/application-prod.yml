@@ -1,0 +1,8 @@
+spring:
+  application:
+    name:
+      est_service-prod
+
+server:
+  port:
+    8082

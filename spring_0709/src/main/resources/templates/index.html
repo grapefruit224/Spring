@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<title th:text="${titelName}">title</title>
+<h1>스프링부트 타임리프 홈페이지 테스트</h1>
+<p th:text="${name}">메세지가 표시됩니다.</p> <!--model.addAttritube랑 맞춰줘야히ㅏㅁ-->
+<div th:text="${message}">과연?</div>
+<a th:text="${url}">show url</a>
+<a th:href="${realUrl}">이게 진짜 지롱</a>
+</body>
+</html>
