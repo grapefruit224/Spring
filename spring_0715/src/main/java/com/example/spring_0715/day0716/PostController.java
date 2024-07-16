@@ -51,4 +51,28 @@ public class PostController {
         posts.removeIf(post -> post.getId() == id);
         return "redirect:/posts";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable("id") Long id,Model model){
+        Post post = posts.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+
+        model.addAttribute("post",post);
+        return "post/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit(@PathVariable("id") Long id, @ModelAttribute Post updatePost){
+        Post post = posts.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
+        post.setTitle(updatePost.getTitle());
+        post.setContent(updatePost.getContent());
+        return "redirect:/posts/{id}";
+    }
+
+
 }
