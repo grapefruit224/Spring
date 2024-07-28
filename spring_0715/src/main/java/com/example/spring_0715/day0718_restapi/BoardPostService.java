@@ -122,10 +122,14 @@ public class BoardPostService {
 
     public void deleteComment(Long postId, Long commentId) {
         BoardPost boardPost = findBoardPostById(postId);
-        Comment comment = boardPost.getComments().stream()
+        Comment comment = findCommentById(commentId, boardPost);
+        boardPost.removeComment(comment);
+    }
+
+    private static Comment findCommentById(Long commentId, BoardPost boardPost) {
+        return boardPost.getComments().stream()
                         .filter(c -> c.getId().equals(commentId))
                                 .findFirst()
                                         .orElseThrow(() -> new IllegalArgumentException("댓글을 찾을 수 없습니다."));
-        boardPost.getComments().remove(comment);
     }
 }
